@@ -16,6 +16,41 @@ const parser = new Parser({
   headers: { 'User-Agent': 'TraderDigest/1.0' }
 });
 
+// -- 噪音过滤 --------------------------------------------------------------
+
+// 央行 feed 中常见的非政策内容，需要过滤
+const NOISE_PATTERNS = [
+  // 统计数据表
+  /\bH\.\d+\b/, /\bZ\.\d+\b/, /\bG\.\d+\b/,  // Fed statistical release codes
+  /\bfinancial statements?\b/i,
+  /\bcharge-off and delinquency\b/i,
+  /\baggregate reserves\b/i,
+  /\bassets and liabilities of commercial banks\b/i,
+  /\bcommercial paper\b/i,
+  /\bfinance companies\b/i,
+  /\bforeign exchange rates\b/i,
+  /\bfinancial accounts of the united states\b/i,
+  /\bconsumer credit\b/i,
+  /\bstructure and share data\b/i,
+  /\bindicators for core cpi\b/i,
+  /\baverage contract interest rates\b/i,
+  /\bstatistics on securities\b/i,
+  // 汇率数据
+  /\d+\.\d{4}\s+\w{3}\s*=\s*1\s+\w{3}/,  // "0.7160 USD = 1 AUD"
+  /\d+\.\d{4}\s+TWI/i,
+  /\d+\.\d{4}\s+SDR/i,
+  // 假期
+  /\bboxing day\b/i, /\bchristmas day\b/i,
+  /\bremembrance day\b/i, /\bthanksgiving day\b/i,
+  // 空标题
+  /^undefined$/, /^$/
+];
+
+function isNoise(article) {
+  const text = `${article.title} ${article.summary}`;
+  return NOISE_PATTERNS.some(p => p.test(text));
+}
+
 // -- 有 RSS 的央行 ---------------------------------------------------------
 
 async function collectFromRss(source) {
@@ -110,8 +145,15 @@ async function main() {
     }
   }
 
-  log('central-banks', `总计 ${allBanks.length} 条声明, ${errors.length} 个错误`);
-  console.log(JSON.stringify({ centralBanks: allBanks, errors }, null, 2));
+  // 过滤噪音 (统计数据表、汇率数据、假期等非政策内容)
+  const filtered = allBanks.filter(a => !isNoise(a));
+  const noiseCount = allBanks.length - filtered.length;
+  if (noiseCount > 0) {
+    log('central-banks', `过滤 ${noiseCount} 条噪音数据`);
+  }
+
+  log('central-banks', `总计 ${filtered.length} 条声明, ${errors.length} 个错误`);
+  console.log(JSON.stringify({ centralBanks: filtered, errors }, null, 2));
 }
 
 main().catch(err => {
