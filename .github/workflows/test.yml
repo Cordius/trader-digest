@@ -1,0 +1,10 @@
+name: Test Actions
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/test.yml']
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Actions works!"
