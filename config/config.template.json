@@ -7,6 +7,10 @@
     "webhookUrl": "YOUR_WEBHOOK_URL_HERE",
     "method": "webhook"
   },
+  "remote": {
+    "feedUrl": null,
+    "promptsBaseUrl": null
+  },
   "preferences": {
     "includeDeepAnalysis": true,
     "focusRegions": [],

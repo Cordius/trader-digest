@@ -20,9 +20,6 @@ const USER_DIR = join(homedir(), '.trader-digest');
 const LOCAL_FEED_PATH = join(__dirname, '..', 'feed-financial.json');
 const LOCAL_PROMPTS_DIR = join(__dirname, '..', 'prompts');
 
-const REMOTE_FEED_URL = 'https://raw.githubusercontent.com/YOUR_ORG/trader-digest/main/feed-financial.json';
-const REMOTE_PROMPTS_BASE = 'https://raw.githubusercontent.com/YOUR_ORG/trader-digest/main/prompts';
-
 const PROMPT_FILES = [
   'digest-brief.md',
   'digest-deep.md',
@@ -32,27 +29,31 @@ const PROMPT_FILES = [
 
 // -- 加载 feed -------------------------------------------------------------
 
-async function loadFeed() {
+async function loadFeed(remoteUrl) {
   // 优先本地 feed (GitHub Actions 生成后 clone 到本地)
   if (existsSync(LOCAL_FEED_PATH)) {
     const raw = await readFile(LOCAL_FEED_PATH, 'utf-8');
     return JSON.parse(raw);
   }
 
-  // 降级: 从 GitHub raw 拉取
-  try {
-    const text = await fetchText(REMOTE_FEED_URL);
-    return JSON.parse(text);
-  } catch (err) {
-    log('prepare', `无法加载 feed: ${err.message}`);
-    return null;
+  // 降级: 从配置的远程 URL 拉取 (可选)
+  if (remoteUrl) {
+    try {
+      const text = await fetchText(remoteUrl);
+      return JSON.parse(text);
+    } catch (err) {
+      log('prepare', `远程 feed 不可达: ${err.message}`);
+    }
   }
+
+  log('prepare', '无本地 feed 且未配置远程 URL');
+  return null;
 }
 
 // -- 加载 prompts ----------------------------------------------------------
 // 优先级: 用户自定义 > GitHub 远程 > 本地分发副本
 
-async function loadPrompts() {
+async function loadPrompts(remoteBaseUrl) {
   const prompts = {};
   const userPromptsDir = join(USER_DIR, 'prompts');
 
@@ -68,13 +69,15 @@ async function loadPrompts() {
       continue;
     }
 
-    // 优先级 2: GitHub 远程最新
-    try {
-      const remote = await fetchText(`${REMOTE_PROMPTS_BASE}/${filename}`, 5000);
-      prompts[key] = remote;
-      continue;
-    } catch {
-      // 远程不可达，降级到本地
+    // 优先级 2: 远程最新 (可选)
+    if (remoteBaseUrl) {
+      try {
+        const remote = await fetchText(`${remoteBaseUrl}/${filename}`, 5000);
+        prompts[key] = remote;
+        continue;
+      } catch {
+        // 远程不可达，降级到本地
+      }
     }
 
     // 优先级 3: 本地分发副本
@@ -104,7 +107,8 @@ async function main() {
   }
 
   // 2. 加载 feed
-  const feed = await loadFeed();
+  const remoteFeedUrl = config.remote?.feedUrl || null;
+  const feed = await loadFeed(remoteFeedUrl);
   if (!feed) {
     errors.push('无法加载 feed-financial.json');
   }
@@ -118,7 +122,8 @@ async function main() {
   }
 
   // 4. 加载 prompts
-  const prompts = await loadPrompts();
+  const remotePromptsBase = config.remote?.promptsBaseUrl || null;
+  const prompts = await loadPrompts(remotePromptsBase);
 
   // 5. 组装输出
   const output = {
