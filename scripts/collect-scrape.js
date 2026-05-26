@@ -106,6 +106,12 @@ async function defaultScrape(source) {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
+  // 安全超时: 270s 内必须完成
+  const safetyTimer = setTimeout(() => {
+    log('scrape', '安全超时 (270s), 强制退出');
+    process.exit(1);
+  }, 270_000);
+
   const sources = await loadSources();
   const scrapeSources = sources.filter(s => !s.rss && s.scrapeFallback);
   log('scrape', `开始抓取 ${scrapeSources.length} 个无 RSS 信源`);
@@ -142,10 +148,10 @@ async function main() {
   }
 
   log('scrape', `总计抓取 ${allArticles.length} 篇文章, ${errors.length} 个错误`);
+  clearTimeout(safetyTimer);
   console.log(JSON.stringify({ articles: allArticles, errors }, null, 2));
 }
 
 main().catch(err => {
-  console.error(JSON.stringify({ articles: [], errors: [{ error: err.message }] }));
-  process.exit(1);
+  console.log(JSON.stringify({ articles: [], errors: [{ error: err.message }] }));
 });

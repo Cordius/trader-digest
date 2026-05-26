@@ -105,6 +105,12 @@ async function collectXueqiu(source) {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
+  // 安全超时: 270s 内必须完成
+  const safetyTimer = setTimeout(() => {
+    log('sentiment', '安全超时 (270s), 强制退出');
+    process.exit(1);
+  }, 270_000);
+
   const sources = await loadSourcesByCategory('sentiment');
   log('sentiment', `开始采集 ${sources.length} 个情绪信源`);
 
@@ -155,10 +161,10 @@ async function main() {
   };
 
   log('sentiment', `总计 ${allSignals.length} 条信号, 情绪: ${JSON.stringify(sentimentSummary)}`);
+  clearTimeout(safetyTimer);
   console.log(JSON.stringify({ sentiment: allSignals, sentimentSummary, errors }, null, 2));
 }
 
 main().catch(err => {
-  console.error(JSON.stringify({ sentiment: [], sentimentSummary: {}, errors: [{ error: err.message }] }));
-  process.exit(1);
+  console.log(JSON.stringify({ sentiment: [], sentimentSummary: {}, errors: [{ error: err.message }] }));
 });

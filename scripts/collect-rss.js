@@ -30,6 +30,12 @@ async function collectOne(source) {
 }
 
 async function main() {
+  // 安全超时: 270s 内必须完成，否则强制退出
+  const safetyTimer = setTimeout(() => {
+    log('rss', '安全超时 (270s), 强制退出');
+    process.exit(1);
+  }, 270_000);
+
   const sources = await loadSources();
   const rssSources = sources.filter(s => s.rss);
   log('rss', `开始采集 ${rssSources.length} 个 RSS 源`);
@@ -64,11 +70,11 @@ async function main() {
 
   log('rss', `总计采集 ${allArticles.length} 篇文章, ${errors.length} 个错误`);
 
+  clearTimeout(safetyTimer);
   const output = { articles: allArticles, errors };
   console.log(JSON.stringify(output, null, 2));
 }
 
 main().catch(err => {
-  console.error(JSON.stringify({ articles: [], errors: [{ error: err.message }] }));
-  process.exit(1);
+  console.log(JSON.stringify({ articles: [], errors: [{ error: err.message }] }));
 });

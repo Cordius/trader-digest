@@ -6,8 +6,7 @@
 // 用法: node scripts/collect.js
 // ============================================================================
 
-import { execFile } from 'child_process';
-import { promisify } from 'util';
+import { spawn } from 'child_process';
 import { writeFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -17,7 +16,6 @@ import { extractKeywords, log } from './utils.js';
 
 dayjs.extend(utc);
 
-const execFileAsync = promisify(execFile);
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const FEED_PATH = join(__dirname, '..', 'feed-financial.json');
 
@@ -25,21 +23,51 @@ const FEED_PATH = join(__dirname, '..', 'feed-financial.json');
 
 async function runCollector(scriptName) {
   const scriptPath = join(__dirname, scriptName);
-  try {
-    const { stdout } = await execFileAsync('node', [scriptPath], {
-      timeout: 300000, // 5 分钟超时
-      maxBuffer: 50 * 1024 * 1024 // 50MB
+  const TIMEOUT_MS = 300_000; // 5 分钟
+
+  return new Promise((resolve) => {
+    const child = spawn('node', [scriptPath], {
+      timeout: TIMEOUT_MS,
+      stdio: ['ignore', 'pipe', 'inherit'] // stderr 直通终端便于调试
     });
-    return JSON.parse(stdout);
-  } catch (err) {
-    log('collect', `${scriptName} 失败: ${err.message}`);
-    return { errors: [{ script: scriptName, error: err.message }] };
-  }
+
+    const chunks = [];
+    child.stdout.on('data', c => chunks.push(c));
+
+    const finalize = (reason) => {
+      const stdout = Buffer.concat(chunks).toString('utf-8').trim();
+      if (stdout) {
+        try {
+          resolve(JSON.parse(stdout));
+          return;
+        } catch {
+          log('collect', `${scriptName} JSON 解析失败 (${reason}), 前 200 字符: ${stdout.slice(0, 200)}`);
+        }
+      }
+      resolve({ errors: [{ script: scriptName, error: `子进程 ${reason}, 无有效输出` }] });
+    };
+
+    child.on('close', (code) => finalize(`exit ${code}`));
+    child.on('timeout', () => {
+      log('collect', `${scriptName} 超时 ${TIMEOUT_MS / 1000}s, 终止`);
+      child.kill('SIGTERM');
+    });
+    child.on('error', (err) => {
+      log('collect', `${scriptName} 启动失败: ${err.message}`);
+      finalize('spawn error');
+    });
+  });
 }
 
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
+  // 安全超时: 防止单个子进程挂起拖死整个采集流程
+  const safetyTimer = setTimeout(() => {
+    log('collect', '全局安全超时 (270s), 强制终止');
+    process.exit(1);
+  }, 270_000);
+
   log('collect', '开始全量采集...');
   const startTime = Date.now();
 
@@ -110,10 +138,11 @@ async function main() {
     log('collect', `${errors.length} 个采集错误`);
   }
 
+  clearTimeout(safetyTimer);
   console.log(JSON.stringify({ status: 'ok', stats, errorCount: errors.length }, null, 2));
 }
 
 main().catch(err => {
-  console.error(`采集失败: ${err.message}`);
-  process.exit(1);
+  log('collect', `采集失败: ${err.message}`);
+  console.log(JSON.stringify({ status: 'error', error: err.message }));
 });

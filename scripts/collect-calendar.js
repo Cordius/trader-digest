@@ -131,6 +131,12 @@ async function collectForexFactory() {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
+  // 安全超时: 270s 内必须完成
+  const safetyTimer = setTimeout(() => {
+    log('calendar', '安全超时 (270s), 强制退出');
+    process.exit(1);
+  }, 270_000);
+
   const sources = await loadSourcesByCategory('calendar');
   log('calendar', `开始采集 ${sources.length} 个经济日历源`);
 
@@ -181,10 +187,10 @@ async function main() {
   });
 
   log('calendar', `总计 ${deduped.length} 条日历 (去重前 ${allEvents.length}), ${errors.length} 个错误`);
+  clearTimeout(safetyTimer);
   console.log(JSON.stringify({ events: deduped, errors }, null, 2));
 }
 
 main().catch(err => {
-  console.error(JSON.stringify({ events: [], errors: [{ error: err.message }] }));
-  process.exit(1);
+  console.log(JSON.stringify({ events: [], errors: [{ error: err.message }] }));
 });
