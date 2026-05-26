@@ -1,0 +1,26 @@
+{
+  "name": "trader-digest",
+  "version": "1.0.0",
+  "description": "全球金融信源日报 — 追踪80+专业信源，生成市场摘要与影响分析",
+  "type": "module",
+  "scripts": {
+    "collect": "node scripts/collect.js",
+    "collect:rss": "node scripts/collect-rss.js",
+    "collect:scrape": "node scripts/collect-scrape.js",
+    "collect:banks": "node scripts/collect-central-banks.js",
+    "collect:calendar": "node scripts/collect-calendar.js",
+    "collect:sentiment": "node scripts/collect-sentiment.js",
+    "prepare": "node scripts/prepare-digest.js",
+    "deliver": "node scripts/deliver-webhook.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0",
+    "cheerio": "^1.0.0",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.0"
+  }
+}

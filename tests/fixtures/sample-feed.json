@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-05-26T07:00:00Z",
+  "lookbackHours": 24,
+  "articles": [
+    {
+      "sourceId": "reuters",
+      "title": "Federal Reserve signals potential rate cut in September",
+      "summary": "Federal Reserve officials indicated openness to cutting rates as inflation shows signs of cooling.",
+      "url": "https://example.com/fed-rate-cut",
+      "publishedAt": "2026-05-26T10:00:00Z",
+      "language": "en",
+      "author": "John Smith"
+    },
+    {
+      "sourceId": "yicai",
+      "title": "中国PMI超预期回升至51.2",
+      "summary": "制造业连续第二个月扩张，出口新订单分项大幅改善。",
+      "url": "https://example.com/china-pmi",
+      "publishedAt": "2026-05-26T08:30:00Z",
+      "language": "zh",
+      "author": null
+    }
+  ],
+  "centralBanks": [
+    {
+      "sourceId": "ecb",
+      "title": "[欧洲央行] ECB maintains interest rates, signals June cut",
+      "summary": "The Governing Council decided to keep rates unchanged but signaled a likely cut at the June meeting.",
+      "url": "https://example.com/ecb-rates",
+      "publishedAt": "2026-05-26T06:00:00Z",
+      "language": "en"
+    }
+  ],
+  "events": [
+    {
+      "time": "14:00",
+      "country": "DE",
+      "event": "GfK Consumer Confidence",
+      "importance": "medium",
+      "actual": null,
+      "forecast": "-22.0",
+      "previous": "-24.2",
+      "source": "trading-economics"
+    }
+  ],
+  "sentiment": [
+    {
+      "source": "twitter",
+      "platform": "X/Twitter",
+      "handle": "DeItaone",
+      "text": "Fed pivot is coming sooner than market expects, bullish on equities",
+      "url": "https://x.com/DeItaone/123",
+      "sentiment": "bullish",
+      "score": 0,
+      "timestamp": "2026-05-26T05:30:00Z"
+    }
+  ],
+  "stats": {
+    "totalArticles": 2,
+    "totalCentralBanks": 1,
+    "totalEvents": 1,
+    "totalSentiment": 1,
+    "sentimentSummary": { "bullish": 1, "bearish": 0, "neutral": 0 },
+    "topKeywords": ["Fed", "rate", "PMI", "ECB"]
+  }
+}

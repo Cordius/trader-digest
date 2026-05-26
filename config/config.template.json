@@ -1,0 +1,15 @@
+{
+  "language": "zh",
+  "frequency": "daily",
+  "timezone": "Asia/Shanghai",
+  "delivery": {
+    "platform": "feishu",
+    "webhookUrl": "YOUR_WEBHOOK_URL_HERE",
+    "method": "webhook"
+  },
+  "preferences": {
+    "includeDeepAnalysis": true,
+    "focusRegions": [],
+    "focusSectors": []
+  }
+}

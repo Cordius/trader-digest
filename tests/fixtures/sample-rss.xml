@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Test RSS Feed</title>
+    <link>https://example.com</link>
+    <description>A test RSS feed for Trader Digest</description>
+    <item>
+      <title>Federal Reserve signals potential rate cut in September</title>
+      <link>https://example.com/fed-rate-cut</link>
+      <description>Federal Reserve officials indicated openness to cutting rates as inflation shows signs of cooling.</description>
+      <pubDate>Mon, 26 May 2026 10:00:00 GMT</pubDate>
+      <author>John Smith</author>
+    </item>
+    <item>
+      <title>China PMI rises above expectations to 51.2</title>
+      <link>https://example.com/china-pmi</link>
+      <description>China manufacturing PMI expanded for the second consecutive month, beating market expectations.</description>
+      <pubDate>Mon, 26 May 2026 08:30:00 GMT</pubDate>
+      <author>Li Wei</author>
+    </item>
+    <item>
+      <title>OPEC+ extends production cuts through year end</title>
+      <link>https://example.com/opec-cuts</link>
+      <description>The OPEC+ alliance agreed to maintain supply discipline, supporting oil prices above $80 per barrel.</description>
+      <pubDate>Mon, 26 May 2026 06:00:00 GMT</pubDate>
+      <author>Ahmed Hassan</author>
+    </item>
+    <item>
+      <title>Old article should be filtered out</title>
+      <link>https://example.com/old-article</link>
+      <description>This article is too old and should be filtered by the 24h window.</description>
+      <pubDate>Thu, 22 May 2026 10:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

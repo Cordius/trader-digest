@@ -1,0 +1,45 @@
+name: Collect Financial Feeds
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: collect-group
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run full collection
+        run: node scripts/collect.js
+        timeout-minutes: 10
+
+      - name: Commit feed update
+        env:
+          COMMIT_MSG: "chore: update feed-financial.json"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add feed-financial.json
+          git diff --cached --quiet || git commit -m "$COMMIT_MSG"
+          git push
