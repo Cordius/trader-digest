@@ -105,11 +105,11 @@ async function collectXueqiu(source) {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
-  // 安全超时: 270s 内必须完成
+  // 安全超时: 200s 内必须完成 (必须小于父进程 spawn timeout 240s)
   const safetyTimer = setTimeout(() => {
-    log('sentiment', '安全超时 (270s), 强制退出');
+    log('sentiment', '安全超时 (200s), 强制退出');
     process.exit(1);
-  }, 270_000);
+  }, 200_000);
 
   const sources = await loadSourcesByCategory('sentiment');
   log('sentiment', `开始采集 ${sources.length} 个情绪信源`);
@@ -163,8 +163,12 @@ async function main() {
   log('sentiment', `总计 ${allSignals.length} 条信号, 情绪: ${JSON.stringify(sentimentSummary)}`);
   clearTimeout(safetyTimer);
   console.log(JSON.stringify({ sentiment: allSignals, sentimentSummary, errors }, null, 2));
+
+  // 强制退出: 防止 pending HTTP 连接拖住事件循环
+  setTimeout(() => process.exit(0), 1000);
 }
 
 main().catch(err => {
   console.log(JSON.stringify({ sentiment: [], sentimentSummary: {}, errors: [{ error: err.message }] }));
+  setTimeout(() => process.exit(0), 1000);
 });

@@ -30,11 +30,11 @@ async function collectOne(source) {
 }
 
 async function main() {
-  // 安全超时: 270s 内必须完成，否则强制退出
+  // 安全超时: 200s 内必须完成 (必须小于父进程 spawn timeout 240s)
   const safetyTimer = setTimeout(() => {
-    log('rss', '安全超时 (270s), 强制退出');
+    log('rss', '安全超时 (200s), 强制退出');
     process.exit(1);
-  }, 270_000);
+  }, 200_000);
 
   const sources = await loadSources();
   const rssSources = sources.filter(s => s.rss);
@@ -73,8 +73,12 @@ async function main() {
   clearTimeout(safetyTimer);
   const output = { articles: allArticles, errors };
   console.log(JSON.stringify(output, null, 2));
+
+  // 强制退出: 防止 pending HTTP 连接拖住事件循环
+  setTimeout(() => process.exit(0), 1000);
 }
 
 main().catch(err => {
   console.log(JSON.stringify({ articles: [], errors: [{ error: err.message }] }));
+  setTimeout(() => process.exit(0), 1000);
 });

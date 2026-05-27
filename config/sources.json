@@ -3,30 +3,6 @@
   "version": "1.0.0",
   "sources": [
     {
-      "id": "ap-news",
-      "name": "美联社",
-      "nameEn": "Associated Press",
-      "url": "https://apnews.com/",
-      "rss": "https://rsshub.app/apnews/topics/business",
-      "category": "wire",
-      "region": "global",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
-      "id": "reuters",
-      "name": "路透社",
-      "nameEn": "Reuters",
-      "url": "https://www.reuters.com",
-      "rss": "https://rsshub.app/reuters/world",
-      "category": "wire",
-      "region": "global",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
       "id": "nytimes",
       "name": "纽约时报",
       "nameEn": "New York Times",
@@ -39,35 +15,11 @@
       "scrapeFallback": false
     },
     {
-      "id": "vir-vietnam",
-      "name": "越南投资报",
-      "nameEn": "Vietnam Investment Review",
-      "url": "https://vir.com.vn/",
-      "rss": "https://vir.com.vn/rss/latest.rss",
-      "category": "newspaper",
-      "region": "asia",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": true
-    },
-    {
       "id": "sg-business-times",
       "name": "新加坡商业时报",
       "nameEn": "Business Times Singapore",
       "url": "https://www.businesstimes.com.sg/",
       "rss": "https://www.businesstimes.com.sg/rss.xml",
-      "category": "newspaper",
-      "region": "asia",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": true
-    },
-    {
-      "id": "bangkok-post",
-      "name": "曼谷邮报商业版",
-      "nameEn": "Bangkok Post Business",
-      "url": "https://www.bangkokpost.com/business",
-      "rss": "https://rsshub.app/bangkokpost/business",
       "category": "newspaper",
       "region": "asia",
       "language": "en",
@@ -99,18 +51,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "yicai",
-      "name": "第一财经",
-      "nameEn": "Yicai / China Business Network",
-      "url": "https://www.yicai.com/",
-      "rss": "https://rsshub.app/yicai/brief",
-      "category": "financial",
-      "region": "asia",
-      "language": "zh",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
       "id": "cnr-radio",
       "name": "央广经济之声",
       "nameEn": "China National Radio",
@@ -119,42 +59,6 @@
       "category": "broadcast",
       "region": "asia",
       "language": "zh",
-      "priority": 3,
-      "scrapeFallback": true
-    },
-    {
-      "id": "spa-saudi",
-      "name": "沙特通讯社",
-      "nameEn": "Saudi Press Agency",
-      "url": "https://www.spa.gov.sa/",
-      "rss": "https://www.spa.gov.sa/rss/en",
-      "category": "wire",
-      "region": "middle-east",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": true
-    },
-    {
-      "id": "arab-news",
-      "name": "阿拉伯新闻",
-      "nameEn": "Arab News",
-      "url": "https://www.arabnews.com/",
-      "rss": "https://www.arabnews.com/rss.xml",
-      "category": "newspaper",
-      "region": "middle-east",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "saudi-gazette",
-      "name": "沙特公报",
-      "nameEn": "Saudi Gazette",
-      "url": "https://www.saudigazette.com.sa/",
-      "rss": "https://saudigazette.com.sa/rss",
-      "category": "newspaper",
-      "region": "middle-east",
-      "language": "en",
       "priority": 3,
       "scrapeFallback": true
     },
@@ -171,18 +75,6 @@
       "scrapeFallback": true
     },
     {
-      "id": "kauppalehti",
-      "name": "芬兰商业日报",
-      "nameEn": "Kauppalehti",
-      "url": "https://www.kauppalehti.fi/",
-      "rss": "https://www.kauppalehti.fi/rss.xml",
-      "category": "newspaper",
-      "region": "eu",
-      "language": "fi",
-      "priority": 3,
-      "scrapeFallback": true
-    },
-    {
       "id": "nhk",
       "name": "日本NHK",
       "nameEn": "NHK World Japan",
@@ -192,54 +84,6 @@
       "region": "asia",
       "language": "ja",
       "priority": 1,
-      "scrapeFallback": false
-    },
-    {
-      "id": "eu-official",
-      "name": "欧盟官方门户",
-      "nameEn": "European Union Official",
-      "url": "https://european-union.europa.eu/index_en",
-      "rss": "https://european-union.europa.eu/news-and-events/press-releases_en/rss.xml",
-      "category": "wire",
-      "region": "eu",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "eu-news",
-      "name": "欧盟新闻活动",
-      "nameEn": "EU News and Events",
-      "url": "https://european-union.europa.eu/news-and-events_en",
-      "rss": "https://european-union.europa.eu/news-and-events_en/rss.xml",
-      "category": "wire",
-      "region": "eu",
-      "language": "en",
-      "priority": 3,
-      "scrapeFallback": false
-    },
-    {
-      "id": "europarl",
-      "name": "欧洲议会",
-      "nameEn": "European Parliament",
-      "url": "https://www.europarl.europa.eu/news/en",
-      "rss": "https://www.europarl.europa.eu/rss/doc/press/en.xml",
-      "category": "wire",
-      "region": "eu",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "yonhap",
-      "name": "韩联社",
-      "nameEn": "Yonhap News Agency",
-      "url": "https://en.yna.co.kr/",
-      "rss": "https://en.yna.co.kr/RSS/news.xml",
-      "category": "wire",
-      "region": "asia",
-      "language": "en",
-      "priority": 2,
       "scrapeFallback": false
     },
     {
@@ -267,18 +111,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "afp",
-      "name": "法新社",
-      "nameEn": "Agence France-Presse",
-      "url": "https://www.afp.com",
-      "rss": "https://rsshub.app/afp/news",
-      "category": "wire",
-      "region": "global",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
       "id": "lemonde",
       "name": "法国世界报",
       "nameEn": "Le Monde",
@@ -299,18 +131,6 @@
       "category": "newspaper",
       "region": "eu",
       "language": "fr",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "ansa",
-      "name": "意大利安莎社",
-      "nameEn": "ANSA",
-      "url": "https://www.ansa.it/",
-      "rss": "https://www.ansa.it/english/news/index.xml",
-      "category": "wire",
-      "region": "eu",
-      "language": "en",
       "priority": 2,
       "scrapeFallback": false
     },
@@ -339,30 +159,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "efe",
-      "name": "西班牙埃菲社",
-      "nameEn": "EFE",
-      "url": "https://efe.com/",
-      "rss": "https://rsshub.app/efe/noticias",
-      "category": "wire",
-      "region": "eu",
-      "language": "es",
-      "priority": 2,
-      "scrapeFallback": true
-    },
-    {
-      "id": "elpais",
-      "name": "西班牙国家报",
-      "nameEn": "El País",
-      "url": "https://elpais.com/",
-      "rss": "https://feeds.elpais.com/mrss-s/pages/ep/portada.html",
-      "category": "newspaper",
-      "region": "eu",
-      "language": "es",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
       "id": "elmundo",
       "name": "西班牙世界报",
       "nameEn": "El Mundo",
@@ -375,35 +171,11 @@
       "scrapeFallback": false
     },
     {
-      "id": "korea-joongang",
-      "name": "韩国中央日报",
-      "nameEn": "Korea JoongAng Daily",
-      "url": "https://koreajoongangdaily.joins.com/",
-      "rss": "https://koreajoongangdaily.joins.com/rss/rss.xml",
-      "category": "newspaper",
-      "region": "asia",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
       "id": "tovima",
       "name": "希腊论坛报",
       "nameEn": "To Vima",
       "url": "https://www.tovima.gr/",
       "rss": "https://www.tovima.gr/feed/",
-      "category": "newspaper",
-      "region": "eu",
-      "language": "el",
-      "priority": 3,
-      "scrapeFallback": true
-    },
-    {
-      "id": "kathimerini",
-      "name": "希腊每日报",
-      "nameEn": "Kathimerini",
-      "url": "https://www.kathimerini.gr/",
-      "rss": "https://www.kathimerini.gr/rss",
       "category": "newspaper",
       "region": "eu",
       "language": "el",
@@ -471,30 +243,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "the-australian",
-      "name": "澳洲人报",
-      "nameEn": "The Australian",
-      "url": "https://www.theaustralian.com.au/",
-      "rss": "https://www.theaustralian.com.au/rss",
-      "category": "newspaper",
-      "region": "oceania",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "nz-herald",
-      "name": "新西兰先驱报",
-      "nameEn": "New Zealand Herald",
-      "url": "https://www.nzherald.co.nz/",
-      "rss": "https://www.nzherald.co.nz/arc/outboundfeeds/rss/",
-      "category": "newspaper",
-      "region": "oceania",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
       "id": "stuff-nz",
       "name": "新西兰Stuff",
       "nameEn": "Stuff New Zealand",
@@ -505,18 +253,6 @@
       "language": "en",
       "priority": 3,
       "scrapeFallback": false
-    },
-    {
-      "id": "tvnz",
-      "name": "新西兰TVNZ",
-      "nameEn": "TVNZ 1News",
-      "url": "https://www.1news.co.nz/",
-      "rss": "https://www.1news.co.nz/rss",
-      "category": "broadcast",
-      "region": "oceania",
-      "language": "en",
-      "priority": 3,
-      "scrapeFallback": true
     },
     {
       "id": "globe-mail",
@@ -555,18 +291,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "swissinfo",
-      "name": "瑞士资讯",
-      "nameEn": "Swissinfo",
-      "url": "https://www.swissinfo.ch/",
-      "rss": "https://www.swissinfo.ch/eng/rss",
-      "category": "broadcast",
-      "region": "eu",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
       "id": "nzz",
       "name": "新苏黎世报",
       "nameEn": "Neue Zürcher Zeitung",
@@ -577,67 +301,6 @@
       "language": "de",
       "priority": 2,
       "scrapeFallback": false
-    },
-    {
-      "id": "letemps",
-      "name": "瑞士时代报",
-      "nameEn": "Le Temps",
-      "url": "https://www.letemps.ch/",
-      "rss": "https://www.letemps.ch/rss",
-      "category": "newspaper",
-      "region": "eu",
-      "language": "fr",
-      "priority": 3,
-      "scrapeFallback": false
-    },
-    {
-      "id": "elfinanciero",
-      "name": "墨西哥金融家报",
-      "nameEn": "El Financiero",
-      "url": "https://www.elfinanciero.com.mx/",
-      "rss": "https://www.elfinanciero.com.mx/feed/",
-      "category": "financial",
-      "region": "latam",
-      "language": "es",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "eleconomista-mx",
-      "name": "墨西哥经济学家报",
-      "nameEn": "El Economista Mexico",
-      "url": "https://www.eleconomista.com.mx/",
-      "rss": "https://www.eleconomista.com.mx/rss",
-      "category": "financial",
-      "region": "latam",
-      "language": "es",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-
-    {
-      "id": "bloomberg",
-      "name": "彭博社",
-      "nameEn": "Bloomberg",
-      "url": "https://www.bloomberg.com",
-      "rss": "https://rsshub.app/bloomberg",
-      "category": "financial",
-      "region": "global",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
-      "id": "ft",
-      "name": "金融时报",
-      "nameEn": "Financial Times",
-      "url": "https://www.ft.com",
-      "rss": "https://rsshub.app/ft/news",
-      "category": "financial",
-      "region": "global",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": true
     },
     {
       "id": "wsj",
@@ -676,43 +339,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "nikkei-asia",
-      "name": "日经亚洲",
-      "nameEn": "Nikkei Asia",
-      "url": "https://asia.nikkei.com",
-      "rss": "https://rsshub.app/nikkei-asia/latest-stories",
-      "category": "financial",
-      "region": "asia",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
-      "id": "caixin",
-      "name": "财新网",
-      "nameEn": "Caixin",
-      "url": "https://www.caixin.com",
-      "rss": "https://rsshub.app/caixin/latest",
-      "category": "financial",
-      "region": "asia",
-      "language": "zh",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
-      "id": "wallstreetcn",
-      "name": "华尔街见闻",
-      "nameEn": "Wall Street CN",
-      "url": "https://wallstreetcn.com",
-      "rss": "https://rsshub.app/wallstreetcn/live/global",
-      "category": "financial",
-      "region": "asia",
-      "language": "zh",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-
-    {
       "id": "fed-fomc",
       "name": "美联储FOMC",
       "nameEn": "Federal Reserve FOMC",
@@ -749,18 +375,6 @@
       "scrapeFallback": false
     },
     {
-      "id": "pbc",
-      "name": "中国人民银行",
-      "nameEn": "People's Bank of China",
-      "url": "http://www.pbc.gov.cn/",
-      "rss": "https://rsshub.app/pbc/goutongjiaoliu",
-      "category": "central-bank",
-      "region": "asia",
-      "language": "zh",
-      "priority": 1,
-      "scrapeFallback": true
-    },
-    {
       "id": "boe",
       "name": "英国央行",
       "nameEn": "Bank of England",
@@ -772,31 +386,6 @@
       "priority": 1,
       "scrapeFallback": false
     },
-    {
-      "id": "imf",
-      "name": "国际货币基金组织",
-      "nameEn": "IMF",
-      "url": "https://www.imf.org/en/News",
-      "rss": "https://www.imf.org/en/Publications/RSS?lang=en",
-      "category": "central-bank",
-      "region": "global",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "world-bank",
-      "name": "世界银行",
-      "nameEn": "World Bank",
-      "url": "https://www.worldbank.org/en/news",
-      "rss": "https://www.worldbank.org/en/news/rss",
-      "category": "central-bank",
-      "region": "global",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-
     {
       "id": "investing-calendar",
       "name": "Investing.com 经济日历",
@@ -833,7 +422,6 @@
       "priority": 1,
       "scrapeFallback": true
     },
-
     {
       "id": "reddit-wsb",
       "name": "Reddit WallStreetBets",
@@ -844,90 +432,6 @@
       "region": "us",
       "language": "en",
       "priority": 2,
-      "scrapeFallback": true
-    },
-    {
-      "id": "xueqiu",
-      "name": "雪球热帖",
-      "nameEn": "Xueqiu Hot Posts",
-      "url": "https://xueqiu.com/",
-      "rss": "https://rsshub.app/xueqiu/hotshot",
-      "category": "sentiment",
-      "region": "asia",
-      "language": "zh",
-      "priority": 2,
-      "scrapeFallback": true
-    },
-    {
-      "id": "twitter-zerohedge",
-      "name": "@zerohedge",
-      "nameEn": "Tyler Durden (ZeroHedge)",
-      "url": "https://x.com/zerohedge",
-      "rss": "https://rsshub.app/twitter/user/zerohedge",
-      "category": "sentiment",
-      "region": "global",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "twitter-deankurak",
-      "name": "@DeItaone",
-      "nameEn": "Walter Bloomberg (DeItaone)",
-      "url": "https://x.com/DeItaone",
-      "rss": "https://rsshub.app/twitter/user/DeItaone",
-      "category": "sentiment",
-      "region": "global",
-      "language": "en",
-      "priority": 1,
-      "scrapeFallback": false
-    },
-    {
-      "id": "twitter-fintel",
-      "name": "@faborhedge",
-      "nameEn": "Fintel",
-      "url": "https://x.com/fintel_ss",
-      "rss": "https://rsshub.app/twitter/user/fintel_ss",
-      "category": "sentiment",
-      "region": "global",
-      "language": "en",
-      "priority": 3,
-      "scrapeFallback": false
-    },
-    {
-      "id": "twitter-sentiment-bloom",
-      "name": "@BloombergTV",
-      "nameEn": "Bloomberg TV",
-      "url": "https://x.com/BloombergTV",
-      "rss": "https://rsshub.app/twitter/user/BloombergTV",
-      "category": "sentiment",
-      "region": "global",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "twitter-unusual-whales",
-      "name": "@unusual_whales",
-      "nameEn": "Unusual Whales",
-      "url": "https://x.com/unusual_whales",
-      "rss": "https://rsshub.app/twitter/user/unusual_whales",
-      "category": "sentiment",
-      "region": "us",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "xinhua",
-      "name": "新华社",
-      "nameEn": "Xinhua News Agency",
-      "url": "http://www.xinhuanet.com/",
-      "rss": "https://rsshub.app/xinhuanet/fortune",
-      "category": "wire",
-      "region": "asia",
-      "language": "zh",
-      "priority": 1,
       "scrapeFallback": true
     },
     {
@@ -955,36 +459,12 @@
       "scrapeFallback": false
     },
     {
-      "id": "rba",
-      "name": "澳洲联储",
-      "nameEn": "Reserve Bank of Australia",
-      "url": "https://www.rba.gov.au/speeches/",
-      "rss": "https://www.rba.gov.au/rss/rss-speeches.xml",
-      "category": "central-bank",
-      "region": "oceania",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": true
-    },
-    {
       "id": "boc",
       "name": "加拿大央行",
       "nameEn": "Bank of Canada",
       "url": "https://www.bankofcanada.ca/",
       "rss": "https://www.bankofcanada.ca/feed/",
       "category": "central-bank",
-      "region": "us",
-      "language": "en",
-      "priority": 2,
-      "scrapeFallback": false
-    },
-    {
-      "id": "twitter-jimbianco",
-      "name": "@jimbianco",
-      "nameEn": "Jim Bianco (Bianco Research)",
-      "url": "https://x.com/jimbianco",
-      "rss": "https://rsshub.app/twitter/user/jimbianco",
-      "category": "sentiment",
       "region": "us",
       "language": "en",
       "priority": 2,

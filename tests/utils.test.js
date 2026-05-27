@@ -157,7 +157,7 @@ describe('utils - sources.json integrity', () => {
     const data = JSON.parse(raw);
 
     expect(data.sources).toBeInstanceOf(Array);
-    expect(data.sources.length).toBeGreaterThanOrEqual(80);
+    expect(data.sources.length).toBeGreaterThanOrEqual(30);
   });
 
   it('should have all required fields per source', async () => {

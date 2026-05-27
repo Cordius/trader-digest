@@ -106,11 +106,11 @@ async function defaultScrape(source) {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
-  // 安全超时: 270s 内必须完成
+  // 安全超时: 200s 内必须完成 (必须小于父进程 spawn timeout 240s)
   const safetyTimer = setTimeout(() => {
-    log('scrape', '安全超时 (270s), 强制退出');
+    log('scrape', '安全超时 (200s), 强制退出');
     process.exit(1);
-  }, 270_000);
+  }, 200_000);
 
   const sources = await loadSources();
   const scrapeSources = sources.filter(s => !s.rss && s.scrapeFallback);
@@ -150,8 +150,12 @@ async function main() {
   log('scrape', `总计抓取 ${allArticles.length} 篇文章, ${errors.length} 个错误`);
   clearTimeout(safetyTimer);
   console.log(JSON.stringify({ articles: allArticles, errors }, null, 2));
+
+  // 强制退出: 防止 pending HTTP 连接拖住事件循环
+  setTimeout(() => process.exit(0), 1000);
 }
 
 main().catch(err => {
   console.log(JSON.stringify({ articles: [], errors: [{ error: err.message }] }));
+  setTimeout(() => process.exit(0), 1000);
 });

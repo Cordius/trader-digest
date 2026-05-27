@@ -112,11 +112,11 @@ async function collectFromPage(source) {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
-  // 安全超时: 270s 内必须完成
+  // 安全超时: 200s 内必须完成 (必须小于父进程 spawn timeout 240s)
   const safetyTimer = setTimeout(() => {
-    log('central-banks', '安全超时 (270s), 强制退出');
+    log('central-banks', '安全超时 (200s), 强制退出');
     process.exit(1);
-  }, 270_000);
+  }, 200_000);
 
   const sources = await loadSourcesByCategory('central-bank');
   log('central-banks', `开始监控 ${sources.length} 个央行信源`);
@@ -161,8 +161,12 @@ async function main() {
   log('central-banks', `总计 ${filtered.length} 条声明, ${errors.length} 个错误`);
   clearTimeout(safetyTimer);
   console.log(JSON.stringify({ centralBanks: filtered, errors }, null, 2));
+
+  // 强制退出: 防止 pending HTTP 连接拖住事件循环
+  setTimeout(() => process.exit(0), 1000);
 }
 
 main().catch(err => {
   console.log(JSON.stringify({ centralBanks: [], errors: [{ error: err.message }] }));
+  setTimeout(() => process.exit(0), 1000);
 });

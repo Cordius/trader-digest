@@ -23,18 +23,22 @@ const FEED_PATH = join(__dirname, '..', 'feed-financial.json');
 
 async function runCollector(scriptName) {
   const scriptPath = join(__dirname, scriptName);
-  const TIMEOUT_MS = 300_000; // 5 分钟
+  const TIMEOUT_MS = 240_000; // 4 分钟 (必须小于父进程 safety timer)
+  const KILL_GRACE_MS = 5_000; // SIGTERM → SIGKILL 宽限期
 
   return new Promise((resolve) => {
     const child = spawn('node', [scriptPath], {
       timeout: TIMEOUT_MS,
-      stdio: ['ignore', 'pipe', 'inherit'] // stderr 直通终端便于调试
+      stdio: ['ignore', 'pipe', 'inherit']
     });
 
     const chunks = [];
     child.stdout.on('data', c => chunks.push(c));
 
+    let killTimer = null;
+
     const finalize = (reason) => {
+      if (killTimer) clearTimeout(killTimer);
       const stdout = Buffer.concat(chunks).toString('utf-8').trim();
       if (stdout) {
         try {
@@ -49,8 +53,12 @@ async function runCollector(scriptName) {
 
     child.on('close', (code) => finalize(`exit ${code}`));
     child.on('timeout', () => {
-      log('collect', `${scriptName} 超时 ${TIMEOUT_MS / 1000}s, 终止`);
+      log('collect', `${scriptName} 超时 ${TIMEOUT_MS / 1000}s, 发送 SIGTERM`);
       child.kill('SIGTERM');
+      killTimer = setTimeout(() => {
+        log('collect', `${scriptName} SIGTERM 后 ${KILL_GRACE_MS / 1000}s 未退出, 发送 SIGKILL`);
+        child.kill('SIGKILL');
+      }, KILL_GRACE_MS);
     });
     child.on('error', (err) => {
       log('collect', `${scriptName} 启动失败: ${err.message}`);
@@ -62,11 +70,11 @@ async function runCollector(scriptName) {
 // -- 主流程 ----------------------------------------------------------------
 
 async function main() {
-  // 安全超时: 防止单个子进程挂起拖死整个采集流程
+  // 安全超时: 必须大于 spawn timeout(240s) + kill grace(5s)
   const safetyTimer = setTimeout(() => {
-    log('collect', '全局安全超时 (270s), 强制终止');
+    log('collect', '全局安全超时 (300s), 强制终止');
     process.exit(1);
-  }, 270_000);
+  }, 300_000);
 
   log('collect', '开始全量采集...');
   const startTime = Date.now();
