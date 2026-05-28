@@ -3,7 +3,7 @@ name: trader-digest
 description: >
   全球金融信源日报 — 追踪80+专业信源，生成市场摘要与影响分析。
   无需 API key，数据从中央 feed 获取。
-  触发: /news 或 /market-digest
+  触发: /news
 ---
 
 # Trader Digest — 全球金融信源日报
