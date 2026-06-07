@@ -1,0 +1,9 @@
+{
+  "description": "东方财富网快讯抓取配置",
+  "listSelector": "ul.newslist li, div.newscontent div.news_item, ul.list-body li",
+  "titleSelector": "a, .title, .news-title",
+  "linkSelector": "a",
+  "linkAttr": "href",
+  "dateSelector": ".time, .date, span.news-time",
+  "dateFormat": "YYYY-MM-DD HH:mm"
+}

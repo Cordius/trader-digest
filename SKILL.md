@@ -1,14 +1,14 @@
 ---
 name: trader-digest
 description: >
-  全球金融信源日报 — 追踪80+专业信源，生成市场摘要与影响分析。
+  全球金融信源日报 — 追踪85+专业信源，生成市场摘要与影响分析。
   无需 API key，数据从中央 feed 获取。
   触发: /news
 ---
 
 # Trader Digest — 全球金融信源日报
 
-追踪 80+ 全球专业金融信源（通讯社、央行、财经媒体、经济日历、市场情绪），每日生成市场摘要与影响分析，通过 IM Webhook 推送。
+追踪 85+ 全球专业金融信源（通讯社、央行、财经媒体、经济日历、市场情绪），每日生成市场摘要与影响分析，通过 IM Webhook 推送。
 
 ## 平台检测
 
@@ -24,7 +24,7 @@ description: >
 按以下步骤引导用户完成配置:
 
 ### Step 1: 介绍
-向用户介绍服务: "我是 Trader Digest，将每日为你追踪 80+ 全球金融信源，生成市场摘要与影响分析。"
+向用户介绍服务: "我是 Trader Digest，将每日为你追踪 85+ 全球金融信源，生成市场摘要与影响分析。"
 
 ### Step 2: 推送方式
 询问用户希望如何接收摘要:
@@ -126,13 +126,13 @@ echo "摘要内容" | node scripts/deliver-webhook.js
 
 ## 信源覆盖
 
-当前追踪 78 个信源，覆盖:
+当前追踪 85 个信源，覆盖:
 - **全球通讯社**: AP, Reuters, AFP, EFE, TASS, ANSA, 韩联社, 沙特通讯社
-- **金融专业媒体**: Bloomberg, FT, WSJ, CNBC, MarketWatch, 第一财经, 财新, 华尔街见闻
+- **金融专业媒体**: Bloomberg, FT, WSJ, CNBC, MarketWatch, 第一财经, 财新, 华尔街见闻, 新浪财经, 财联社, 东方财富
 - **各国大报**: NYT, Guardian, BBC, LeMonde, Spiegel, 日经亚洲 等
 - **央行/监管**: 美联储, ECB, 日银, 人行, 英央行, IMF, World Bank
-- **经济日历**: Trading Economics, Investing.com, ForexFactory
-- **市场情绪**: 金融 Twitter KOLs, Reddit/WSB, 雪球
+- **经济日历**: Trading Economics, Investing.com, ForexFactory, 东方财富经济日历
+- **市场情绪**: 金融 Twitter KOLs, Reddit/WSB, 雪球热帖, 雪球A股讨论
 
 ## 错误处理
 

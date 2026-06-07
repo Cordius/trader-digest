@@ -709,6 +709,78 @@
       "priority": 2,
       "scrapeFallback": false,
       "rss": "https://feeds.bloomberg.com/markets/news.rss"
+    },
+    {
+      "id": "sina-finance",
+      "name": "新浪财经",
+      "nameEn": "Sina Finance",
+      "url": "https://finance.sina.com.cn",
+      "rss": "https://rsshub.rssforever.com/sina/roll/finance",
+      "category": "financial",
+      "region": "asia",
+      "language": "zh",
+      "priority": 1,
+      "scrapeFallback": true
+    },
+    {
+      "id": "cls-telegraph",
+      "name": "财联社电报",
+      "nameEn": "CLS Telegraph",
+      "url": "https://www.cls.cn/telegraph",
+      "rss": "https://rsshub.rssforever.com/cls/telegraph",
+      "category": "financial",
+      "region": "asia",
+      "language": "zh",
+      "priority": 1,
+      "scrapeFallback": true
+    },
+    {
+      "id": "eastmoney",
+      "name": "东方财富",
+      "nameEn": "East Money",
+      "url": "https://finance.eastmoney.com",
+      "rss": null,
+      "category": "financial",
+      "region": "asia",
+      "language": "zh",
+      "priority": 1,
+      "scrapeFallback": true
+    },
+    {
+      "id": "xueqiu-hot",
+      "name": "雪球热帖",
+      "nameEn": "Xueqiu Hot Posts",
+      "url": "https://xueqiu.com",
+      "rss": "https://rsshub.rssforever.com/xueqiu/hotshot/1",
+      "category": "sentiment",
+      "region": "asia",
+      "language": "zh",
+      "priority": 2,
+      "scrapeFallback": true
+    },
+    {
+      "id": "xueqiu-a",
+      "name": "雪球A股讨论",
+      "nameEn": "Xueqiu A-Share Discussion",
+      "url": "https://xueqiu.com/hq#exchange=CN",
+      "rss": "https://rsshub.rssforever.com/xueqiu/group/105010009",
+      "category": "sentiment",
+      "region": "asia",
+      "language": "zh",
+      "priority": 2,
+      "scrapeFallback": true
+    },
+    {
+      "id": "china-ecocalendar",
+      "name": "东方财富经济日历",
+      "nameEn": "EastMoney Economic Calendar",
+      "url": "https://data.eastmoney.com/cjrl/default.html",
+      "rss": null,
+      "category": "calendar",
+      "region": "asia",
+      "language": "zh",
+      "priority": 1,
+      "scrapeFallback": true
     }
   ]
 }

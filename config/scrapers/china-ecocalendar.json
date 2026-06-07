@@ -1,0 +1,9 @@
+{
+  "description": "东方财富经济日历抓取配置",
+  "listSelector": "table.eco-calendar tbody tr, table.data-table tbody tr",
+  "titleSelector": "td.event-name, td:nth-child(3)",
+  "linkSelector": "td.event-name a, td:nth-child(3) a",
+  "linkAttr": "href",
+  "dateSelector": "td.time, td:nth-child(1)",
+  "dateFormat": "YYYY-MM-DD HH:mm"
+}

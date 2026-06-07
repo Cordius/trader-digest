@@ -93,6 +93,44 @@ async function collectInvestingCalendar() {
   return events;
 }
 
+// -- 东方财富经济日历采集 --------------------------------------------------
+
+async function collectEastmoneyCalendar() {
+  const url = 'https://data.eastmoney.com/cjrl/default.html';
+  const html = await fetchText(url, 15000);
+  const $ = cheerio.load(html);
+
+  const events = [];
+  $('table tbody tr, .eco-list-item').each((_, row) => {
+    const $row = $(row);
+    const cells = $row.find('td');
+    if (cells.length < 4) return;
+
+    const time = $(cells[0]).text().trim();
+    const country = $(cells[1]).text().trim();
+    const event = $(cells[2]).text().trim();
+    const importance = $(cells[3]).text().trim();
+    const actual = cells.length > 4 ? $(cells[4]).text().trim() : '';
+    const forecast = cells.length > 5 ? $(cells[5]).text().trim() : '';
+    const previous = cells.length > 6 ? $(cells[6]).text().trim() : '';
+
+    if (event) {
+      events.push({
+        time,
+        country: country || '中国',
+        event,
+        importance: importance || 'medium',
+        actual: actual || null,
+        forecast: forecast || null,
+        previous: previous || null,
+        source: 'china-ecocalendar'
+      });
+    }
+  });
+
+  return events;
+}
+
 // -- ForexFactory 采集 -----------------------------------------------------
 
 async function collectForexFactory() {
@@ -143,7 +181,8 @@ async function main() {
   const collectors = {
     'trading-economics': collectTradingEconomics,
     'investing-calendar': collectInvestingCalendar,
-    'forexfactory': collectForexFactory
+    'forexfactory': collectForexFactory,
+    'china-ecocalendar': collectEastmoneyCalendar
   };
 
   const results = await Promise.allSettled(
