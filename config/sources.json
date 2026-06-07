@@ -648,7 +648,7 @@
       "language": "en",
       "priority": 1,
       "scrapeFallback": true,
-      "rss": "https://rsshub.rssforever.com/apnews/topics/business"
+      "rss": "https://rsshub.ktachibana.party/apnews/topics/business"
     },
     {
       "id": "bloomberg",
@@ -660,7 +660,7 @@
       "language": "en",
       "priority": 1,
       "scrapeFallback": true,
-      "rss": "https://rsshub.rssforever.com/bloomberg"
+      "rss": "https://rsshub.ktachibana.party/bloomberg"
     },
     {
       "id": "caixin",
@@ -715,7 +715,7 @@
       "name": "新浪财经",
       "nameEn": "Sina Finance",
       "url": "https://finance.sina.com.cn",
-      "rss": "https://rsshub.rssforever.com/sina/roll/finance",
+      "rss": null,
       "category": "financial",
       "region": "asia",
       "language": "zh",
@@ -727,7 +727,7 @@
       "name": "财联社电报",
       "nameEn": "CLS Telegraph",
       "url": "https://www.cls.cn/telegraph",
-      "rss": "https://rsshub.rssforever.com/cls/telegraph",
+      "rss": "https://rsshub.ktachibana.party/cls/telegraph",
       "category": "financial",
       "region": "asia",
       "language": "zh",
@@ -751,7 +751,7 @@
       "name": "雪球热帖",
       "nameEn": "Xueqiu Hot Posts",
       "url": "https://xueqiu.com",
-      "rss": "https://rsshub.rssforever.com/xueqiu/hotshot/1",
+      "rss": null,
       "category": "sentiment",
       "region": "asia",
       "language": "zh",
@@ -763,7 +763,7 @@
       "name": "雪球A股讨论",
       "nameEn": "Xueqiu A-Share Discussion",
       "url": "https://xueqiu.com/hq#exchange=CN",
-      "rss": "https://rsshub.rssforever.com/xueqiu/group/105010009",
+      "rss": null,
       "category": "sentiment",
       "region": "asia",
       "language": "zh",

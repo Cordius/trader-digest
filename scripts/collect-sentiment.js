@@ -117,6 +117,12 @@ async function main() {
   const results = await Promise.allSettled(
     sources.map(async source => {
       try {
+        // 无 RSS 的情绪源 (RSSHub 公共镜像已挂) 优雅降级
+        if (!source.rss && (source.id.startsWith('twitter') || source.id.startsWith('xueqiu'))) {
+          log(source.id, 'RSS 不可用 (RSSHub 镜像已挂), 降级为网页抓取');
+          return { sourceId: source.id, signals: [] };
+        }
+
         let signals;
         if (source.id.startsWith('reddit')) {
           signals = await collectReddit(source);

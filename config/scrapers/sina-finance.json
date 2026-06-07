@@ -1,0 +1,9 @@
+{
+  "description": "新浪财经快讯抓取 — 抓取首页滚动新闻列表",
+  "listSelector": "ul.list_01 li, div.feed-card, ul.blk_container li",
+  "titleSelector": "a, .feed-content .content-a a, .feed-main-title a",
+  "linkSelector": "a",
+  "linkAttr": "href",
+  "dateSelector": ".feed-time, .time, span.sina_time",
+  "dateFormat": "YYYY-MM-DD HH:mm"
+}

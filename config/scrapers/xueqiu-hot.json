@@ -1,0 +1,9 @@
+{
+  "description": "雪球热帖抓取 — 抓取首页热门讨论 (JS渲染内容有限, 降级采集)",
+  "listSelector": "div.timeline__item, div.hot-stock-item, article.item, div.status-item",
+  "titleSelector": "a.title, .status-title, h3 a",
+  "linkSelector": "a.title, a",
+  "linkAttr": "href",
+  "dateSelector": ".time, .date, time",
+  "dateFormat": "YYYY-MM-DD HH:mm"
+}

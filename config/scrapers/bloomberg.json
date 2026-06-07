@@ -1,0 +1,9 @@
+{
+  "description": "Bloomberg 首页抓取 — 反爬较强, 降级采集",
+  "listSelector": "article.story, div.postriver-item, div[data-component='story']",
+  "titleSelector": "h3, .story__headline a, .postriver__hed",
+  "linkSelector": "a",
+  "linkAttr": "href",
+  "dateSelector": "time, .story__date, .postriver__timestamp",
+  "dateFormat": "YYYY-MM-DD"
+}

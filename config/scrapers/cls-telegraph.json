@@ -1,0 +1,9 @@
+{
+  "description": "财联社电报快讯抓取 — 抓取电报/快讯页面列表",
+  "listSelector": "div.telegraph-content-box, div.rel-news div.rel-item",
+  "titleSelector": ".telegraph-content, .rel-content",
+  "linkSelector": "a",
+  "linkAttr": "href",
+  "dateSelector": ".telegraph-time, .rel-time",
+  "dateFormat": "HH:mm"
+}

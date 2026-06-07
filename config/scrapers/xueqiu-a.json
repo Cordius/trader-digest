@@ -1,0 +1,9 @@
+{
+  "description": "雪球A股讨论抓取 — 抓取行情页讨论 (JS渲染内容有限, 降级采集)",
+  "listSelector": "div.timeline__item, div.stock-item, div.discuss-item",
+  "titleSelector": "a.title, .item-title, h3 a",
+  "linkSelector": "a",
+  "linkAttr": "href",
+  "dateSelector": ".time, .date",
+  "dateFormat": "YYYY-MM-DD HH:mm"
+}
